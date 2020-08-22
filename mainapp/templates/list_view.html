@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for money in object_list %}
+    <font style="text-transform: uppercase;"><b>{{ money.name }}</b></font>
+    <br>
+    <span class="text-muted">{{ money.email }}</span>
+    <br>
+    <span class="text-muted">TAKE: {{ money.money_take }}</span>
+    <br>
+    <span class="text-muted">GIVE: {{ money.money_give }}</span>
+    
+    <div class="card-footer text-center text-muted">
+        {% if user.is_authenticated %}
+            <a href="{% url 'update_view' money.pk %}">Edit</a> | <a href="{% url 'delete_view' money.pk %}">Delete</a>
+        {% endif %}
+    </div>
+    <br>
+    <br>
+    {% endfor %}
+{% endblock content %}
+  
